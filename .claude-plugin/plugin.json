@@ -1,0 +1,13 @@
+{
+  "name": "founder-os",
+  "displayName": "FounderOS",
+  "version": "0.1.0",
+  "description": "Work on your FounderOS checklists with Claude: connector plus checklist skills.",
+  "author": {
+    "name": "FounderOS",
+    "url": "https://founderos.productrepo.ai"
+  },
+  "homepage": "https://founderos.productrepo.ai",
+  "repository": "https://github.com/product-repo/founderos-plugin",
+  "keywords": ["founderos", "startup", "checklist", "founder"]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "founderos",
+  "owner": {
+    "name": "FounderOS",
+    "url": "https://founderos.productrepo.ai"
+  },
+  "description": "The FounderOS plugin for Claude.",
+  "plugins": [
+    {
+      "name": "founder-os",
+      "source": "./",
+      "description": "Work on your FounderOS checklists with Claude: connector plus checklist skills.",
+      "category": "productivity"
+    }
+  ]
+}
