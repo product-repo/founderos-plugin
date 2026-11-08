@@ -2,7 +2,7 @@
   "mcpServers": {
     "founder-os": {
       "type": "http",
-      "url": "https://founderos.productrepo.ai/mcp/founder"
+      "url": "https://productrepo.ai/mcp/os"
     }
   }
 }

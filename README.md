@@ -1,13 +1,13 @@
 # FounderOS plugin for Claude
 
-Work on your [FounderOS](https://founderos.productrepo.ai) checklists with Claude. Claude reads a checklist, does the work, saves the results and evidence in FounderOS, and marks each step done.
+Work on your [FounderOS](https://productrepo.ai/os) checklists with Claude. Claude reads a checklist, does the work, saves the results and evidence in FounderOS, and marks each step done.
 
 The plugin adds:
 
-- **FounderOS connector**: the remote MCP server at `https://founderos.productrepo.ai/mcp/founder`. You sign in with your FounderOS account. Claude acts only in the workspace you pick, with your role.
+- **FounderOS connector**: the remote MCP server at `https://productrepo.ai/mcp/os`. You sign in with your ProductRepo account. Claude acts only in the workspace you pick, with your role.
 - **FounderOS checklist runner** skill: the protocol Claude follows to work a checklist step by step.
 
-You need a FounderOS account with at least one product.
+You need a ProductRepo account with FounderOS on for your workspace, and at least one FounderOS product.
 
 ## Contents
 
@@ -85,9 +85,9 @@ Start a new session, or run `/reload-plugins` in an open one. Then [sign in to F
 
 The connector uses OAuth. You sign in once per Claude app.
 
-**Claude app:** open the FounderOS plugin and go to its **Connectors** tab. Click **Connect** on `founder-os`. Sign in to FounderOS and pick the workspace Claude may use.
+**Claude app:** open the FounderOS plugin and go to its **Connectors** tab. Click **Connect** on `founder-os`. Sign in to ProductRepo and pick the workspace Claude may use.
 
-**Claude Code:** run `/mcp`. Pick `plugin:founder-os:founder-os` and choose **Authenticate**. Your browser opens FounderOS. Sign in and pick the workspace.
+**Claude Code:** run `/mcp`. Pick `plugin:founder-os:founder-os` and choose **Authenticate**. Your browser opens ProductRepo. Sign in and pick the workspace.
 
 You can see and revoke connections in FounderOS under **Settings → Connect Claude**.
 
@@ -155,7 +155,7 @@ claude plugin marketplace remove founderos
 
 This repo is the plugin's source. There is no CI. Release by hand.
 
-1. Copy the changed skills from the FounderOS app (`resources/skills/<skill>/`). Copy only skills without `in_plugin: false` in their metadata. Keep each folder name the same as the skill `name`.
+1. Edit the skills in `skills/<skill>/` here. This repo is the only source of the skills; the app does not ship them. Keep each folder name the same as the skill `name`.
 2. Bump `version` in `.claude-plugin/plugin.json` (semver). Set it there only, not in `marketplace.json`. Users get an update only when this value changes.
 3. Validate:
 
@@ -183,7 +183,7 @@ This repo is the plugin's source. There is no CI. Release by hand.
   marketplace.json   # marketplace "founderos", one plugin at the repo root
   plugin.json        # plugin "founder-os": name, version, metadata
   icon.png
-.mcp.json            # the FounderOS connector (remote MCP over HTTP)
+.mcp.json            # the FounderOS connector (remote MCP over HTTP, /mcp/os)
 skills/
   founder-os-checklist-runner/SKILL.md
 ```

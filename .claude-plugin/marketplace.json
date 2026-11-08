@@ -2,7 +2,7 @@
   "name": "founderos",
   "owner": {
     "name": "FounderOS",
-    "url": "https://founderos.productrepo.ai"
+    "url": "https://productrepo.ai/os"
   },
   "description": "The FounderOS plugin for Claude.",
   "plugins": [
