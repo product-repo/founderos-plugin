@@ -18,7 +18,6 @@ You need a ProductRepo account with FounderOS on for your workspace, and at leas
 - [Update the plugin](#update-the-plugin)
 - [Troubleshooting](#troubleshooting)
 - [Uninstall](#uninstall)
-- [Release a new version](#release-a-new-version) (maintainers)
 
 ## Install in the Claude app
 
@@ -149,41 +148,4 @@ Or add it with the full URL: `https://github.com/product-repo/founderos-plugin.g
 ```bash
 claude plugin uninstall founder-os@founderos
 claude plugin marketplace remove founderos
-```
-
-## Release a new version
-
-This repo is the plugin's source. There is no CI. Release by hand.
-
-1. Edit the skills in `skills/<skill>/` here. This repo is the only source of the skills; the app does not ship them. Keep each folder name the same as the skill `name`.
-2. Bump `version` in `.claude-plugin/plugin.json` (semver). Set it there only, not in `marketplace.json`. Users get an update only when this value changes.
-3. Validate:
-
-   ```bash
-   claude plugin validate --strict .
-   ```
-
-4. Test locally:
-
-   ```bash
-   claude plugin marketplace add ./
-   claude plugin install founder-os@founderos
-   ```
-
-5. Commit, push to `main`, then tag the release:
-
-   ```bash
-   claude plugin tag --push
-   ```
-
-### Layout
-
-```text
-.claude-plugin/
-  marketplace.json   # marketplace "founderos", one plugin at the repo root
-  plugin.json        # plugin "founder-os": name, version, metadata
-  icon.png
-.mcp.json            # the FounderOS connector (remote MCP over HTTP, /mcp/os)
-skills/
-  founder-os-checklist-runner/SKILL.md
 ```
