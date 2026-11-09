@@ -5,7 +5,8 @@ Work on your [FounderOS](https://productrepo.ai/os) checklists with Claude. Clau
 The plugin adds:
 
 - **FounderOS connector**: the remote MCP server at `https://productrepo.ai/mcp/os`. You sign in with your ProductRepo account. Claude acts only in the workspace you pick, with your role.
-- **FounderOS checklist runner** skill: the protocol Claude follows to work a checklist step by step.
+- **FounderOS checklist runner** skill: the protocol Claude follows to work a checklist step by step. After the first step, it asks one time to run the next ready items automatically (max 5 per session).
+- **Checklist loop hook** (Claude Code only): when Claude stops, a Stop hook checks the last message. If Claude stopped before the step was done, stopped during an auto run you accepted, or gave you a follow-up task it can do itself, the hook tells Claude to continue. Cowork does not run plugin hooks, so there the skill alone runs the loop.
 
 You need a ProductRepo account with FounderOS on for your workspace, and at least one FounderOS product.
 
@@ -93,12 +94,14 @@ You can see and revoke connections in FounderOS under **Settings → Connect Cla
 ## Run your first checklist
 
 1. In FounderOS, open a product, then open a checklist.
-2. On a step, click **Open in Claude**. Or click **Copy prompt** and paste it in a new Claude chat or Claude Code session.
-3. Send it. Claude reads the checklist, loads its skills and starts the first step.
-4. Claude saves results and evidence in FounderOS and marks each step done.
-5. When a step needs approval, review it in FounderOS. Then tell Claude to continue.
+2. On a step, click **Run with Cowork**. Or copy the prompt and paste it in a new Claude chat or Claude Code session.
+3. In Cowork, set the permission mode to **Auto**. Claude then works without a request for each step.
+4. Send it. Claude reads the checklist, loads its skills and does the step.
+5. Claude saves results and evidence in FounderOS and marks the step done. Then it lists the next ready items and asks one time: "Run the next items automatically?"
+6. Say yes, and Claude does them one by one with no more questions (max 5 steps per session). Say no, and it stops.
+7. When a step needs approval, review it in FounderOS. Then tell Claude to continue.
 
-Claude asks you before anything it cannot undo, such as publish, send, pay or delete.
+Claude asks for your approval before anything it cannot undo, such as publish, send, pay or delete. It does not give you follow-up tasks.
 
 ## Update the plugin
 

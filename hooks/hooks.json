@@ -1,0 +1,16 @@
+{
+  "description": "FounderOS checklist loop guard: keeps Claude on the next ready checklist item and stops it from handing follow-up tasks to the founder. Claude Code only: Cowork does not run plugin hooks.",
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "prompt",
+            "timeout": 30,
+            "prompt": "You check the end of a Claude turn for the FounderOS plugin. Hook input JSON: $ARGUMENTS\n\nRead stop_hook_active and last_assistant_message.\n\nAnswer {\"ok\": true} when ANY of these is true:\n- stop_hook_active is true.\n- The message is not about work on a FounderOS checklist, item or action.\n- The message asks the founder the one question \"Run the next items automatically?\".\n- The message says the founder said no to the auto run, or Claude stops because the founder asked it to stop.\n- The message says Claude called request_approval and waits for the founder.\n- The message says complete_action still returns unmet criteria after a fix.\n- The message says 5 actions are done in this session, or that no item is ready.\n- The message asks the founder for a decision or for information that only the founder has.\n- You are not sure.\n\nAnswer {\"ok\": false, \"reason\": \"...\"} only when the message is about FounderOS checklist work AND it does one of these:\n- It stops before the current action is complete, with no stop reason from the list above.\n- It starts with \"Auto run: n/5\" where n is less than 5, and it stops with no stop reason from the list above, for example it asks \"Continue?\" again.\n- It tells the founder to do a follow-up task or next step that Claude can do itself, for example \"Next, you should...\", \"You can now...\" or a \"Next steps\" list for the founder.\n\nIn the reason, tell Claude: finish the current action or do that follow-up work yourself; during an auto run the founder accepted, continue with the next item with no question, start the message with \"Auto run: n/5\", max 5 actions; never ask the founder to do a follow-up task or next step.\n\nRespond with JSON only."
+          }
+        ]
+      }
+    ]
+  }
+}
